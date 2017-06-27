@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ativacão do microfone para o AtendeSimples Voip</title>
+  </head>
+  <body>
+    <h1>
+      Ativacão do microfone para o AtendeSimples Voip
+    </h1>
+
+    <div id="video" class="video">
+
+    </div>
+
+    <script type="text/javascript">
+      navigator.getMedia = ( navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia);
+
+        navigator.getMedia (
+
+          // permissoes
+          {
+            video: false,
+            audio: true
+          },
+
+          // callbackSucesso
+          function(localMediaStream) {
+            var video = document.querySelector('video');
+            video.src = window.URL.createObjectURL(localMediaStream);
+            video.onloadedmetadata = function(e) {
+              // Faz algo com o vídeo aqui.
+            };
+          },
+
+          // callbackErro
+          function(err) {
+            console.log("O seguinte erro ocorreu: " + err);
+          }
+
+        );
+    </script>
+  </body>
+</html>
